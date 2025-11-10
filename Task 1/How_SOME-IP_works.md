@@ -1,6 +1,6 @@
 # **Scalable service-Oriented MiddlewarE over IP (SOME/IP)**
 
-## Terminologies:
+## #Terminologies:
    ### 1.Method 
        A method, procedure, function, or subroutine that is called/invoked.
    ### 2.Remote Procedure Call (RPC)
@@ -28,7 +28,7 @@
    ### 12.Client
        The ECU using the service instance of a server shall be called client in the context of this service instance.
    
-## Message construction: ![imgae](2.png)
+## #Message construction: ![imgae](2.png)
    ### Header
       • Message ID (Service ID/Method ID) [32 Bits]
       • Length [32 Bits]
