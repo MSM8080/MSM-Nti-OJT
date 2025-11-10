@@ -9,7 +9,7 @@
   - Device (3): Raspberri pi 4 {target H.W to be upadted remotly}
 
 ## The upadte (Payload):
- - Part (1): Imgae by yocto {linux kernel + u-boot}
+ - Part (1): Image by yocto {linux kernel + u-boot}
  - Part (2): C++/QT application
 
 ## Communication protocls used:
