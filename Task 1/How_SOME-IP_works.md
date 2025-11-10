@@ -2,7 +2,7 @@
 
 ## #Terminologies:
    ### 1.Method 
-       A method, procedure, function, or subroutine that is called/invoked.
+   - A method, procedure, function, or subroutine that is called/invoked.
    ### 2.Remote Procedure Call (RPC)
        A method call from one ECU to another that is transmitted using messages
    ### 3.Request
