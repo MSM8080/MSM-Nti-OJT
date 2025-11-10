@@ -62,4 +62,22 @@
 - take over the Request ID from the corresponding request
 - Set the Message Type to RESPONSE (i.e. 0x80) or ERROR (i.e. 0x81)
 - set Return Code to the return code of called method or in case of an Error message to a valid error code.
+
+## #Notification Events: 
+(Update on change — send an update as soon as a "value" changes (e.g. dooropen))
+
+Notifications describe a general Publish/Subscribe-Concept. Usually the server pub-
+lishes a service to which a client subscribes. On certain cases the server will send the
+client an event, which could be for example an updated value or an event that occurred.
+
+### The server has to do the following for payload and header:
+- Construct the payload
+- Set the Message ID based on the event the server wants to send
+- Set the Length field to 8 bytes (for the part of the SOME/IP header after the length field) + length of the serialized payload
+- Set the Client ID to 0x00.
+- Set the Session ID 
+- Set the Protocol Version according [PRS_SOMEIP_00052]
+- Set the Interface Version according to the interface definition
+- Set the Message Type to NOTIFICATION (i.e. 0x02)
+- Set the Return Code to 0x00
       
