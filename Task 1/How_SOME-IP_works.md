@@ -40,4 +40,7 @@
    • Return Code [8 Bits]
    ### Payload
    • The size of the SOME/IP payload field depends on the transport protocol used. With UDP the SOME/IP payload shall be between 0 and 1400 Bytes. Since TCP supports segmentation of payloads, larger sizes are automatically supported
+
+## #Request/Response Communication:
+
       
