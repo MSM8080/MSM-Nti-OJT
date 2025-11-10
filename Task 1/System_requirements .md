@@ -21,7 +21,7 @@
  - Method: Cyclic redundancy check (CRC) check
  - Function: message digest algorithm 5 (md5)
 
-## Description [System](./1.png)
+## Description ![System](1.png)
   - Step (1): Building C++/Qt application for device (3) on device (1)
   - Step (2): Building the image with app by yocto (payload) on device (1)
   - Step (3): Generate CRC code for payload on device (1)
