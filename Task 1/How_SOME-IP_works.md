@@ -39,8 +39,26 @@
    • Message Type [8 Bits]
    • Return Code [8 Bits]
    ### Payload
-   • The size of the SOME/IP payload field depends on the transport protocol used. With UDP the SOME/IP payload shall be between 0 and 1400 Bytes. Since TCP supports segmentation of payloads, larger sizes are automatically supported
+   The size of the SOME/IP payload field depends on the transport protocol used. With UDP the SOME/IP payload shall be between 0 and 1400 Bytes. Since TCP supports segmentation of payloads, larger sizes are automatically supported
 
 ## #Request/Response Communication:
+![imgae](3.png)
 
+### The client has to do the following for payload and header:
+• Construct the payload
+• Set the Message ID based on the method the client wants to call
+• Set the Length field to 8 bytes (for the part of the SOME/IP header after the length field) + length of the serialized payload
+• Optionally set the Request ID to a unique number (shall be unique for client only)
+• Set the Protocol Version according 
+• Set the Interface Version according to the interface definition
+• Set the Message Type to REQUEST (i.e. 0x00)
+• Set the Return Code to 0x00
+
+### The server builds the header of the response based on the header of the client’s request and does in addition:
+• Construct the payload
+• take over the Message ID from the corresponding request
+• Set the length to the 8 Bytes + new payload size
+• take over the Request ID from the corresponding request
+• Set the Message Type to RESPONSE (i.e. 0x80) or ERROR (i.e. 0x81)
+• set Return Code to the return code of called method or in case of an Error message to a valid error code.
       
