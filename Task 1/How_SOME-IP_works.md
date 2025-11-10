@@ -31,13 +31,14 @@
 ## #Message construction: 
 ![imgae](2.png)
    ### Header
-   • Message ID (Service ID/Method ID) [32 Bits]
-   • Length [32 Bits]
-   • Request ID (Client ID/Session ID) [32 Bits]
-   • Protocol Version [8Bits]
-   • Interface Version [8 Bits]
-   • Message Type [8 Bits]
-   • Return Code [8 Bits]
+   - Message ID (Service ID/Method ID) [32 Bits]
+   - Length [32 Bits]
+   - Request ID (Client ID/Session ID) [32 Bits]
+   - Protocol Version [8Bits]
+   - Interface Version [8 Bits]
+   - Message Type [8 Bits]
+   - Return Code [8 Bits]
+   
    ### Payload
    The size of the SOME/IP payload field depends on the transport protocol used. With UDP the SOME/IP payload shall be between 0 and 1400 Bytes. Since TCP supports segmentation of payloads, larger sizes are automatically supported
 
