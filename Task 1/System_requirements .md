@@ -14,7 +14,7 @@
 
 ## Communication protocls used:
  - Protocol (1): FTP between Device (1) & Device (2)
- - Protocol (2): SOME/IP between Device (2) & Device (3)
+ - Protocol (2): SOME/IP (Based on TCP) between Device (2) & Device (3)
  - Protocol (3): V.M Shared directory 
 
 ## Integrity check:
