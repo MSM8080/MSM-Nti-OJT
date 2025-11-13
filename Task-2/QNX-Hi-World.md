@@ -3,10 +3,10 @@
 ## **Install QNX & QNX Momentics in my PC**
 ![image](1.png)
 
-## **Compile & Running QNX C++ program in VMware**
+## **QNX program MakeFile**
 ![image](2.png)
 
-## **QNX program MakeFile**
+## **Compile & Running QNX C++ program in VMware**
 ![image](3.png)
 
 
