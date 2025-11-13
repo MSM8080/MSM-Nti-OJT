@@ -5,6 +5,10 @@
 - Client will be Rpi 4 {Update Target}
 - My PC {Update Builder}
 
+## **My intial state flow of communication for whole system**
+![image]{7.svg}
+
+
 ## **What is the Method in {SOME/IP}:**
 - A method, procedure, function, or subroutine that is called/invoked.
 - A service can consist of combinations of zero or multiple events, methods and fields.
