@@ -30,11 +30,6 @@ inherit cmake pkgconfig
 EXTRA_OECMAKE = "-DCMAKE_INSTALL_PREFIX=${prefix} \
                  -DCMAKE_INSTALL_LIBDIR=${libdir} \
                  -DSYSCONFDIR=${prefix}/etc"
-# Install
-# do_install:append() {
-#          install -d {D}${bindir}
-#          install -m 0755 ${WORKDIR}/vsomeip-1.0+git999/examples/hello_world/hello* ${D}${bindir}
-# }
 
 # # QA assurance
 FILES:${PN}:append = " /usr/bin \
@@ -49,19 +44,3 @@ FILES:${PN}:append = " /usr/bin \
                         /usr/etc/vsomeip/vsomeip-local.json "
 
 
-# hossam ------------------------------------------------------
-
-#EXTRA_OECMAKE = "\
-#    -DCMAKE_INSTALL_PREFIX=${prefix} \
-#    -DCMAKE_INSTALL_LIBDIR=${libdir} \
-#    -DSYSCONFDIR=${prefix}/etc \
-#"
-
-# Only append additional config files
-#do_install:append() {
-#    install -d ${D}${prefix}/etc/vsomeip
-#    # install -m 0644 ${WORKDIR}/client.json ${D}${prefix}/etc/vsomeip/
-#    # install -m 0644 ${WORKDIR}/service.json ${D}${prefix}/etc/vsomeip/
-#}
-
-#FILES:${PN} += "${bindir}/* ${bindir} ${libdir}/* ${prefix}/etc/vsomeip/*"
