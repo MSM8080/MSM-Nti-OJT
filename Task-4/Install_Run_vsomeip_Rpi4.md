@@ -3,7 +3,8 @@
 ## Build the example msm-service on PC
   - structure the msm-examples directory as the image down
   - write the CmakeLists.txt [file](./CMakeLists.txt)
-  - write the msm-service.cpp file
+  - write the msm-service.cpp [file](./msm-service.cpp)
+  - write the service json [file](./msm-service.json)
   - then build it:
     - $ cd vsomeip/msm-vsomeip
     - $ cmake -Bbuild -DCMAKE_INSTALL_PREFIX=../install_folder -DENABLE_SIGNAL_HANDLING=1 .
@@ -14,7 +15,9 @@
 ## Build the example msm-client on Rpi 4
   - structure the vsomeip layer as the image down
   - structure the msm-vsomeip-app layer as the image down
-  - write both vsomeip & msm-vsomeip-app bb files
+  - write the msm-service.cpp [file](./msm-client.cpp)
+  - write client json [file](./msm-client.json)
+  - write both vsomeip bb [file](./vsomeip_git.bb) & msm-vsomeip-app bb [file](./msm-vsomeip-app_0.1.bb)
   - the build image:
     - $ bitbake vsomeip
     - $ bitbake msm-vsomeip-app
