@@ -15,7 +15,7 @@
 ## Build the example msm-client on Rpi 4
   - structure the vsomeip layer as the image down
   - structure the msm-vsomeip-app layer as the image down
-  - write the msm-service.cpp [file](./msm-client.cpp)
+  - write the msm-client.cpp [file](./msm-client.cpp)
   - write client json [file](./msm-client.json)
   - write both vsomeip bb [file](./vsomeip_git.bb) & msm-vsomeip-app bb [file](./msm-vsomeip-app_0.1.bb)
   - the build image:
