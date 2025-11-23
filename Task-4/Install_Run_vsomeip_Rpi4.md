@@ -37,6 +37,7 @@
     - $ export VSOMEIP_CONFIGURATION=/usr/etc/vsomeip/msm-client.json 
 	- $ export VSOMEIP_APPLICATION_NAME=Hello
     - $ export VSOMEIP_APPLICATION=Hello
+    - $ ip a add 172.17.1.2/24 dev eth0
     - $ route add -n  224.224.224.245 dev eth0  
 
 ![image](2.png)
