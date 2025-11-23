@@ -8,6 +8,7 @@
     - $ cd vsomeip/msm-vsomeip
     - $ cmake -Bbuild -DCMAKE_INSTALL_PREFIX=../install_folder -DENABLE_SIGNAL_HANDLING=1 .
     - $ cmake --build build --target install
+
 ![image](4.png)
 
 ## Build the example msm-client on Rpi 4
@@ -18,6 +19,7 @@
     - $ bitbake vsomeip
     - $ bitbake msm-vsomeip-app
     - $ bitbake core-image-weston
+      
 ![image](3.png)
 
 ## Run the example msm-service on PC
@@ -27,6 +29,7 @@
     - $ export VSOMEIP_APPLICATION=World
     - $ sudo ip a add 172.17.1.1/24 dev enp4s0
 	- $ sudo route add -nv  224.224.224.245 dev enp4s0
+
 ![image](1.png)
 
 ## Run the example msm-client on Rpi 4
@@ -35,6 +38,7 @@
 	- $ export VSOMEIP_APPLICATION_NAME=Hello
     - $ export VSOMEIP_APPLICATION=Hello
     - $ route add -n  224.224.224.245 dev eth0  
+
 ![image](2.png)
 
 	
