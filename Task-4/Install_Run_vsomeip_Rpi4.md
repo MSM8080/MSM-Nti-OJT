@@ -2,7 +2,7 @@
 
 ## Build the example msm-service on PC
   - structure the msm-examples directory as the image down
-  - write the CmakeLists.txt [file](Task-4/CMakeLists.txt)
+  - write the CmakeLists.txt [file](./Task-4/CMakeLists.txt)
   - write the msm-service.cpp file
   - then build it:
     - $ cd vsomeip/msm-vsomeip
