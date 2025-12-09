@@ -1,5 +1,5 @@
-# **MSM-BrightSkies-OJT**
-# **vsomeip OTA**
+# **MSM-BrightSkies-OJT {vsomeip OTA}**
+
 
 ### Description ![System](1.png)
 The purpose is to build an OTA updating system for Rpi 4 running customized Linux image using
