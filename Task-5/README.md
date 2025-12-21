@@ -78,11 +78,22 @@
 ## # Build vsomeip client/service app 
 
 ### # Inside target: QNX {Running on VM}
+
 	$ mkdir /data/home/root/bin
 	$ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/data/home/root/lib"
 	$ echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/data/home/root/lib"' >> /etc/profile
 
+
 ### # Inside host machine: Ubuntu
+
+**1. Important files:
+- CMake [file](./CMakeLists.txt)
+- Client json [file](./msm-client.json) 
+- Service json [file](./msm-service.json)
+- Toolchain CMake [file](./qnx.nto.toolchain.cmake) 
+
+**2. Compilation of examples
+
 	$ cd ~/qnx_workspace/vsomeip/examples/msm-vsomeip-qnx
 	$ mkdir -p build && cd build
 	$ source ~/qnx800/qnxsdp-env.sh
