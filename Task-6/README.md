@@ -50,7 +50,7 @@
 	  
 **2. fix build {apply patch [file](./capicxx_core_fix_build.patch)}**
 
-	$ git apply name-of-patch-file.patch
+	$ git apply capicxx_core_fix_build.patch
 	$ cmake -D CMAKE_INSTALL_PREFIX=/usr/local ..
 	$ make -j
 	$ sudo make install	  
@@ -99,3 +99,68 @@
 	  
 			
 ![image](2.png)
+
+
+## # QNX {Running on VM}
+	
+### build CommonApi-core-runtime on qnx
+
+**1. download repo**
+
+	$ git clone https://github.com/COVESA/capicxx-core-runtime
+	$ cd capicxx-core-runtime
+	$ source ~/qnx800/qnxsdp-env.sh
+	$ export CPUVARDIR=x86_64
+    $ export QNX_PROJECT_ROOT=$PWD
+
+**2. fix build {apply patch [file](./qnx_capicxx_core_fix_build.patch)}**
+	
+	$ git apply qnx_capicxx_core_fix_build.patch
+
+**3. build**
+
+	$ mkdir install
+	$ mkdir build && cd build
+    $ cmake \
+      -DCMAKE_TOOLCHAIN_FILE=../qnx.nto.toolchain.cmake \
+      -DCMAKE_INSTALL_PREFIX=../install \
+      -DCOMMONAPI_USE_DLT=OFF ..
+	$ make -j
+	$ make install 
+	$ cd ../install/lib
+    $ scp lib* root@192.168.1.12:/data/home/root/lib
+	$ cd ../install/include/CommonAPI-3.2/CommonAPI
+	$ scp ./* root@192.168.1.12:/data/home/root/include
+
+	  
+### build CommonApi-someip-runtime on qnx
+
+**1. download repo**
+	
+	$ git clone https://github.com/COVESA/capicxx-someip-runtime
+	$ cd capicxx-someip-runtime
+	$ source ~/qnx800/qnxsdp-env.sh
+	$ export CPUVARDIR=x86_64
+    $ export QNX_PROJECT_ROOT=$PWD
+
+**2. fix build {apply patch [file](./qnx_capicxx_someip_fix_build.patch)}**
+
+	$ git apply qnx_capicxx_someip_fix_build.patch
+
+**3. build**
+
+	$ mkdir install
+	$ mkdir build && cd build
+	$ cmake \
+	  -DUSE_INSTALLED_COMMONAPI=ON \
+      -DCMAKE_TOOLCHAIN_FILE=../qnx.nto.toolchain.cmake \
+      -DCMAKE_INSTALL_PREFIX=../install \
+      -DCOMMONAPI_USE_DLT=OFF ..
+	$ make -j
+	$ make install 
+	$ cd ../install/lib
+    $ scp lib* root@192.168.1.12:/data/home/root/lib
+	$ cd ../install/include/CommonAPI-3.2/CommonAPI/SomeIP
+    $ scp ./* root@192.168.1.12:/data/home/root/include
+
+
