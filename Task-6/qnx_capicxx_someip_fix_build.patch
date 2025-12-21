@@ -1,0 +1,239 @@
+diff --git a/include/CommonAPI/SomeIP/ClientId.hpp b/include/CommonAPI/SomeIP/ClientId.hpp
+index 0598016..2ab17b5 100644
+--- a/include/CommonAPI/SomeIP/ClientId.hpp
++++ b/include/CommonAPI/SomeIP/ClientId.hpp
+@@ -44,8 +44,12 @@ public:
+     COMMONAPI_EXPORT size_t hashCode();
+ 
+     COMMONAPI_EXPORT client_id_t getClientId();
+-    COMMONAPI_EXPORT uid_t getUid() const;
+-    COMMONAPI_EXPORT gid_t getGid() const;
++
++//    COMMONAPI_EXPORT uid_t getUid() const;
++//    COMMONAPI_EXPORT gid_t getGid() const;
++    COMMONAPI_EXPORT CommonAPI::uid_t getUid() const override;
++    COMMONAPI_EXPORT CommonAPI::gid_t getGid() const override;
++    
+     COMMONAPI_EXPORT std::string getEnv() const;
+     COMMONAPI_EXPORT std::string getHostAddress() const;
+ 
+@@ -53,8 +57,8 @@ public:
+ 
+ protected:
+     client_id_t client_id_;
+-    uid_t uid_;
+-    gid_t gid_;
++    unsigned int uid_;
++    unsigned int gid_;
+     std::string env_;
+     std::string hostAddress_;
+ };
+diff --git a/include/CommonAPI/SomeIP/OutputStream.hpp b/include/CommonAPI/SomeIP/OutputStream.hpp
+index 8458f08..9bf73f6 100644
+--- a/include/CommonAPI/SomeIP/OutputStream.hpp
++++ b/include/CommonAPI/SomeIP/OutputStream.hpp
+@@ -569,7 +569,7 @@ public:
+             } value;
+             value.typed = _value;
+ #if !defined(_WIN32) && !defined(__ANDROID__)
+-            if ((__BYTE_ORDER == __LITTLE_ENDIAN) != isLittleEndian_) {
++            if ((__BYTE_ORDER__ == __LITTLEENDIAN__) != isLittleEndian_) {
+ #else
+             if (!isLittleEndian_) {
+ #endif
+diff --git a/include/CommonAPI/SomeIP/Watch.hpp b/include/CommonAPI/SomeIP/Watch.hpp
+index 7fc2cae..5a29001 100644
+--- a/include/CommonAPI/SomeIP/Watch.hpp
++++ b/include/CommonAPI/SomeIP/Watch.hpp
+@@ -61,11 +61,11 @@ public:
+     void processQueueEntry(std::shared_ptr<QueueEntry> _queueEntry);
+ 
+ private:
+-#ifdef _WIN32
++//#ifdef _WIN32
+     int pipeFileDescriptors_[2];
+-#else
++//#else
+     int eventFd_;
+-#endif
++//#endif
+     void supervise();
+ 
+     pollfd pollFileDescriptor_;
+@@ -77,11 +77,12 @@ private:
+ 
+     std::weak_ptr<Connection> connection_;
+ 
++    const int pipeValue_;
+ #ifdef _WIN32
+     HANDLE wsaEvent_;
+-    const int pipeValue_;
+-#else
+-    const std::uint64_t eventFdValue_;
++//    const int pipeValue_;
++//#else
++//    const std::uint64_t eventFdValue_;
+ 
+ #endif
+ 
+diff --git a/src/CommonAPI/SomeIP/ClientId.cpp b/src/CommonAPI/SomeIP/ClientId.cpp
+index dd3084a..c288454 100644
+--- a/src/CommonAPI/SomeIP/ClientId.cpp
++++ b/src/CommonAPI/SomeIP/ClientId.cpp
+@@ -72,11 +72,13 @@ client_id_t ClientId::getClientId() {
+     return client_id_;
+ }
+ 
+-uid_t ClientId::getUid() const {
++//uid_t ClientId::getUid() const {
++CommonAPI::uid_t ClientId::getUid() const{
+     return uid_;
+ }
+ 
+-gid_t ClientId::getGid() const {
++//gid_t ClientId::getGid() const {
++CommonAPI::gid_t ClientId::getGid() const{
+     return gid_;
+ }
+ 
+diff --git a/src/CommonAPI/SomeIP/StringEncoder.cpp b/src/CommonAPI/SomeIP/StringEncoder.cpp
+index ed83cdd..bc5bf6e 100644
+--- a/src/CommonAPI/SomeIP/StringEncoder.cpp
++++ b/src/CommonAPI/SomeIP/StringEncoder.cpp
+@@ -65,9 +65,9 @@ void StringEncoder::utf16To8(const byte_t *_utf16Str, int _endianess, size_t _si
+         uint32_t secondByte = *_utf16Str & 0xff;
+ 
+         uint32_t codePoint = 0;
+-        if (_endianess == BIG_ENDIAN)
++        if (_endianess == EENDIAN)
+             codePoint = firstByte << 8 | secondByte;
+-        else if (_endianess == LITTLE_ENDIAN)
++        else if (_endianess == __LITTLEENDIAN__)
+             codePoint = secondByte << 8 | firstByte;
+ 
+         if (isSurrogate(uint16_t(codePoint)))
+@@ -94,9 +94,9 @@ void StringEncoder::utf16To8(const byte_t *_utf16Str, int _endianess, size_t _si
+             uint32_t fourthByte = *_utf16Str & 0xff;
+ 
+             uint32_t secondSurrogate = 0;
+-            if (_endianess == BIG_ENDIAN)
++            if (_endianess == EENDIAN)
+                 secondSurrogate = thirdByte << 8 | fourthByte;
+-            else if (_endianess == LITTLE_ENDIAN)
++            else if (_endianess == __LITTLEENDIAN__)
+                 secondSurrogate = fourthByte << 8 | thirdByte;
+ 
+             if (isSurrogate(uint16_t(secondSurrogate)))
+@@ -162,7 +162,7 @@ void StringEncoder::utf8To16(const byte_t *_utf8Str, int _endianess, EncodingSta
+             uint16_t lowSurrogate = static_cast<uint16_t>((base & 0x3ff)
+                     + LOW_SURROGATE_LEAD);
+ 
+-            if (_endianess == BIG_ENDIAN)
++            if (_endianess == EENDIAN)
+             {
+                 bytes.push_back(static_cast<uint8_t>(highSurrogate >> 8));
+                 bytes.push_back(static_cast<uint8_t>(highSurrogate));
+@@ -177,7 +177,7 @@ void StringEncoder::utf8To16(const byte_t *_utf8Str, int _endianess, EncodingSta
+             }
+         } else
+         {
+-            if (_endianess == BIG_ENDIAN)
++            if (_endianess == EENDIAN)
+             {
+                 bytes.push_back(static_cast<uint8_t>(codePoint >> 8));
+                 bytes.push_back(static_cast<uint8_t>(codePoint));
+diff --git a/src/CommonAPI/SomeIP/Watch.cpp b/src/CommonAPI/SomeIP/Watch.cpp
+index afcf69e..15daad8 100644
+--- a/src/CommonAPI/SomeIP/Watch.cpp
++++ b/src/CommonAPI/SomeIP/Watch.cpp
+@@ -16,7 +16,7 @@
+ #include <ws2tcpip.h>
+ #else
+ #include <unistd.h>
+-#include <sys/eventfd.h>
++//#include <sys/eventfd.h>
+ #endif
+ 
+ #if ANDROID
+@@ -31,12 +31,12 @@ namespace CommonAPI {
+ namespace SomeIP {
+ 
+ Watch::Watch(const std::shared_ptr<Connection> &_connection) :
+-#ifdef _WIN32
++//#ifdef _WIN32
+         pipeValue_(4),
+-#else
+-        eventFd_(0),
+-        eventFdValue_(1),
+-#endif
++//#else
++//        eventFd_(0),
++//        eventFdValue_(1),
++//#endif
+         lastProcessing_()
+ {
+ #ifdef _WIN32
+@@ -164,11 +164,14 @@ Watch::Watch(const std::shared_ptr<Connection> &_connection) :
+     }
+     pollFileDescriptor_.fd = pipeFileDescriptors_[0];
+ #else
+-    eventFd_ = eventfd(0, EFD_NONBLOCK | EFD_SEMAPHORE);
+-    if (eventFd_ == -1) {
++//    eventFd_ = eventfd(0, EFD_NONBLOCK | EFD_SEMAPHORE);
++//    if (eventFd_ == -1) {
++//        std::perror(__func__);
++//    }
++//    pollFileDescriptor_.fd = eventFd_;
++    if(pipe2(pipeFileDescriptors_, O_NONBLOCK) == -1) {
+         std::perror(__func__);
+     }
+-    pollFileDescriptor_.fd = eventFd_;
+ #endif
+     pollFileDescriptor_.events = POLLIN;
+ 
+@@ -205,7 +208,9 @@ Watch::~Watch() {
+     closesocket(pipeFileDescriptors_[0]);
+     WSACleanup();
+ #else
+-    close(eventFd_);
++//    close(eventFd_);
++    close(pipeFileDescriptors_[0]);
++    close(pipeFileDescriptors_[1]);
+ #endif
+ }
+ 
+@@ -272,7 +277,14 @@ void Watch::pushQueue(std::shared_ptr<QueueEntry> _queueEntry) {
+         }
+     }
+ #else
+-    while (write(eventFd_, &eventFdValue_, sizeof(eventFdValue_)) == -1) {
++//    while (write(eventFd_, &eventFdValue_, sizeof(eventFdValue_)) == -1) {
++//        if (errno != EAGAIN && errno != EINTR) {
++//            std::perror(__func__);
++//            break;
++//        }
++//        std::this_thread::yield();
++//    }
++    while (write(pipeFileDescriptors_[1], &pipeValue_, sizeof(pipeValue_)) == -1) {
+         if (errno != EAGAIN && errno != EINTR) {
+             std::perror(__func__);
+             break;
+@@ -300,8 +312,16 @@ void Watch::popQueue() {
+         printf("recv failed with error: %d\n", WSAGetLastError());
+     }
+ #else
+-    std::uint64_t readValue(0);
+-    while (read(eventFd_, &readValue, sizeof(readValue)) == -1) {
++//    std::uint64_t readValue(0);
++//    while (read(eventFd_, &readValue, sizeof(readValue)) == -1) {
++//        if (errno != EAGAIN && errno != EINTR) {
++//            std::perror(__func__);
++//            break;
++//        }
++//        std::this_thread::yield();
++//    }
++    int readValue = 0;
++    while (read(pipeFileDescriptors_[0], &readValue, sizeof(readValue)) == -1) {
+         if (errno != EAGAIN && errno != EINTR) {
+             std::perror(__func__);
+             break;
