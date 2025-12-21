@@ -1,8 +1,5 @@
 # **Integrate vsomeip library on qnx on vm**
 
-
-
-
 ## QNX {Running on VM} increase data section size to 5GB
 - inside the extra options write: {--data-size='5120'}
 ![image](1.png)
@@ -43,35 +40,37 @@
 - $ GTEST_ROOT=$GTEST_ROOT TEST_IP_MASTER="<QNX-target-ip-address>" TEST_IP_SLAVE="<Ubuntu-ip-address>" QNX_PROJECT_ROOT="$(pwd)/vsomeip" make -C build-files/ports/vsomeip install -j4
 
 
- ## Change password of root or qnxuser inside QNX on VM
-	  - $ passwd qnxuser --> {2981}
-	  - $ passwd root --> {2981}
-	  
-	  ## correct this shell variable !!!!!!!!!!!
-	  - $ export CPUVARDIR=x86_64
-	  
-	  ## Move the files to the target 
-	  - $ TARGET_HOST=<target-ip-address-or-hostname>
-	  ### for root
-	  - $ scp $QNX_TARGET/$CPUVARDIR/usr/local/lib/libboost* root@$TARGET_HOST:/data/home/root/lib
-	  - $ scp $QNX_TARGET/$CPUVARDIR/usr/local/lib/libvsomeip3* root@$TARGET_HOST:/data/home/root/lib
-	  - $ scp -r $QNX_TARGET/$CPUVARDIR/usr/local/bin/vsomeip_tests root@$TARGET_HOST:/data/home/root/bin
-	  
-	  
-        # Build vsomeip client/service app 
+### Change password of root or QNX {Running on VM}
+!! this commands inside the QNX terminal !!
+- $ passwd qnxuser --> {2981}
+- $ passwd root --> {2981}
 
-          ## on QNX on VM
-	  - $ mkdir /data/home/root/bin
-	  - $ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/data/home/root/lib"
-	  - $ echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/data/home/root/lib"' >> /etc/profile
+### Move compiled files intto the target QNX {Running on VM}
+**1. correct this shell variable !!**
+- $ export CPUVARDIR=x86_64
+	  
+**2. Move the files to the target** 
+- $ TARGET_HOST=<target-ip-address-or-hostname>
+- $ scp $QNX_TARGET/$CPUVARDIR/usr/local/lib/libboost* root@$TARGET_HOST:/data/home/root/lib
+- $ scp $QNX_TARGET/$CPUVARDIR/usr/local/lib/libvsomeip3* root@$TARGET_HOST:/data/home/root/lib
+- $ scp -r $QNX_TARGET/$CPUVARDIR/usr/local/bin/vsomeip_tests root@$TARGET_HOST:/data/home/root/bin
 
+	  
+## Build vsomeip client/service app 
 
-          ## on PC
-          - $ cd ~/qnx_workspace/vsomeip/examples/msm-vsomeip-qnx
-          - $ mkdir -p build && cd build
-          - $ source ~/qnx800/qnxsdp-env.sh
-          - $ export CPUVARDIR=x86_64
-          - $ export QNX_PROJECT_ROOT=$PWD
-          - $ cmake .. -DCMAKE_BUILD_TYPE=Debug
-	  - $ make -j12
-	  - $ scp ./<binary_file> root@TARGET_HOST:/data/home/root/bin	
+### inside target: QNX {Running on VM}
+- $ mkdir /data/home/root/bin
+- $ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/data/home/root/lib"
+- $ echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/data/home/root/lib"' >> /etc/profile
+
+### inside host machine: Ubuntu
+- $ cd ~/qnx_workspace/vsomeip/examples/msm-vsomeip-qnx
+- $ mkdir -p build && cd build
+- $ source ~/qnx800/qnxsdp-env.sh
+- $ export CPUVARDIR=x86_64
+- $ export QNX_PROJECT_ROOT=$PWD
+- $ cmake .. -DCMAKE_BUILD_TYPE=Debug
+- $ make -j12
+- $ scp ./<binary_file> root@TARGET_HOST:/data/home/root/bin
+
+  
