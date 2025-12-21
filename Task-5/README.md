@@ -103,4 +103,9 @@
 	$ make -j12
 	$ scp ./<binary_file> root@TARGET_HOST:/data/home/root/bin
 
+![image](5.png)
+
+![image](6.png)
+
+
   
