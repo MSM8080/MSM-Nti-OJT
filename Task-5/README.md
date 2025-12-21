@@ -45,10 +45,13 @@
 
 	$ BOOST_CPP_VERSION_FLAG="-std=c++17" QNX_PROJECT_ROOT="$(pwd)/boost" make -C build-files/ports/boost install -j4	  
 
+![image](2.png)
+
 **9. Build vsomeip**
 
 	$ GTEST_ROOT=$GTEST_ROOT TEST_IP_MASTER="<QNX-target-ip-address>" TEST_IP_SLAVE="<Ubuntu-ip-address>" QNX_PROJECT_ROOT="$(pwd)/vsomeip" make -C build-files/ports/vsomeip install -j4
 
+![image](3.png)
 
 ### # Change password of root or QNX {Running on VM}
 !! this commands inside the QNX terminal !!
