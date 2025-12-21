@@ -1,23 +1,23 @@
-**Integrate vsomeip library on qnx on vm **
+# **Integrate vsomeip library on qnx on vm**
 
-# QNX {Running on VM} increase data section size to 5GB
+## QNX {Running on VM} increase data section size to 5GB
 - inside the extra options write: {--data-size='5120'}
 ![image](1.png)
 
-# Build boost & vsomeip for QNX {Running on VM} on host machine {Ubuntu}
+## Build boost & vsomeip for QNX {Running on VM} on host machine {Ubuntu}
 
-## Create a workspace
+1. Create a workspace
 - $ mkdir -p ~/qnx_workspace && cd ~/qnx_workspace
 - $ WORKSPACE=${PWD}
 - $ git clone https://github.com/qnx-ports/build-files.git	  
-## For vsomeip 3.4.10
+2. For vsomeip 3.4.10
 - $ git clone https://github.com/qnx-ports/vsomeip.git  -b qnx_3.4.10
-## For SDP 8.0:
+3. For SDP 8.0:
 - $ source ~/qnx800/qnxsdp-env.sh
-## Clone boost
+4. Clone boost
 - $ cd ~/qnx_workspace
 - $ git clone https://github.com/boostorg/boost.git && cd boost	  
-## For boost 1.78.0
+5. For boost 1.78.0
 - $ git checkout boost-1.78.0
 - $ git submodule update --init --recursive
 ## For boost 1.78.0: apply an interprocess boost lib patch
