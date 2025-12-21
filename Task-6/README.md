@@ -128,9 +128,9 @@
 	$ make -j
 	$ make install 
 	$ cd ../install/lib
-    $ scp lib* root@192.168.1.12:/data/home/root/lib
+    $ scp lib* root@<qnx ip>:/data/home/root/lib
 	$ cd ../install/include/CommonAPI-3.2/CommonAPI
-	$ scp ./* root@192.168.1.12:/data/home/root/include
+	$ scp ./* root@<qnx ip>:/data/home/root/include
 
 	  
 ### build CommonApi-someip-runtime on qnx
@@ -159,8 +159,12 @@
 	$ make -j
 	$ make install 
 	$ cd ../install/lib
-    $ scp lib* root@192.168.1.12:/data/home/root/lib
+    $ scp lib* root@<qnx ip>:/data/home/root/lib
 	$ cd ../install/include/CommonAPI-3.2/CommonAPI/SomeIP
-    $ scp ./* root@192.168.1.12:/data/home/root/include
+    $ scp ./* root@<qnx ip>:/data/home/root/include
 
+
+![image](4.png)
+![image](5
+.png)
 
