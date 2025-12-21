@@ -80,7 +80,7 @@
 **2, Edit recipe**
 - edit recipe file as this  [file](./capicxx-core-runtime_git.bb)
 
-**3. Build Image 
+**3. Build Image** 
 - add recipe name to {IMAGE_INSTALL} in distro.conf
 
 	  	
@@ -94,7 +94,7 @@
 **2, Edit recipe**
 - edit recipe file as this  [file](./capicxx-someip-runtime_git.bb)
 
-**3. Build Image 
+**3. Build Image** 
 - add recipe name to {IMAGE_INSTALL} in distro.conf
 	  
 			
