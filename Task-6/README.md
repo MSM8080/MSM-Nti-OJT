@@ -3,7 +3,7 @@
 ## Libraries versions used
 
 **1. Host machine {Ubuntu}**
-- Vsomeip version 		      `#0969DA`{3.5.11}
+- Vsomeip version 		      #0969DA {3.5.11}
 - boost version   		      {1.78.0}
 - qnx SDP version 		      {8.0}
 - common-api-core-runtime 	{3.2.4}
