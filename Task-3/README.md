@@ -1,4 +1,4 @@
-# ** Install vsomeip on my PC**
+# **Install vsomeip on my PC**
 
 ## Prerequisites
 - $ sudo apt install dlt-daemon libdlt-dev
