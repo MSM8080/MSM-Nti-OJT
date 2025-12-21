@@ -7,11 +7,10 @@
 ## Build boost & vsomeip for QNX {Running on VM} on host machine {Ubuntu}
 
 **1. Create a workspace**
-> mkdir -p ~/qnx_workspace && cd ~/qnx_workspace
 
-> WORKSPACE=${PWD}
-
-> git clone https://github.com/qnx-ports/build-files.git	  
+	$ mkdir -p ~/qnx_workspace && cd ~/qnx_workspace
+	$ WORKSPACE=${PWD}
+	$  git clone https://github.com/qnx-ports/build-files.git	  
 
 **2. For vsomeip 3.4.10**
 - $ git clone https://github.com/qnx-ports/vsomeip.git  -b qnx_3.4.10
