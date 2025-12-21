@@ -24,4 +24,49 @@
 - common-api-core-runtime 	{3.2.4}
 - common-api-someip-runtime {3.2.4}
 		
+## Host machine {Ubuntu} 
+
+### delete old boost & change version of boost on pc
+	  
+	$ sudo apt remove --purge 'libboost*'
+	$ sudo apt autoremove --purge
+	$ wget http://sourceforge.net/projects/boost/files/boost/1.78.0/boost_1_78_0.tar.gz
+	$ tar -xf boost_1_78_0.tar.gz
+	$ cd boost_1_78_0/
+	$ ./bootstrap.sh --prefix=/usr/
+	$ sudo ./b2
+	$ sudo ./b2 install
+	$ sudo ldconfig
+	  	  
+	  
+### build CommonApi-core-runtime on pc
+
+**1. Download repo**
+
+	$ git clone https://github.com/COVESA/capicxx-core-runtime.git 
+	$ cd capicxx-core-runtime/
+	$ mkdir build
+	$ cd build
+	  
+**2. fix build {apply patch [file](./capicxx_core_fix_build.patch)}**
+
+	$ git apply name-of-patch-file.patch
+	$ cmake -D CMAKE_INSTALL_PREFIX=/usr/local ..
+	$ make -j
+	$ sudo make install	  
+	  
+### build CommonApi-someip-runtime on pc
+
+    $ git clone https://github.com/COVESA/capicxx-someip-runtime 
+	$ cd capicxx-someip-runtime/
+	$ cmake -D USE_INSTALLED_COMMONAPI=ON -D CMAKE_INSTALL_PREFIX=/usr/local ..
+	$ make -j
+	$ sudo make install
+
+![image](1.png)
+
+	
+	  
+	  
+	  
 			
