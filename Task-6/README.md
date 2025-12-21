@@ -1,6 +1,6 @@
 # Building both Common API Core & SomeIp for PC / Rpi4 / QNX {Running on VM}
 
-## Libraries versions used
+## # Libraries versions used
 
 **1. Host machine {Ubuntu}**
 - Vsomeip version 		      {3.5.11}
@@ -24,7 +24,7 @@
 - common-api-core-runtime 	{3.2.4}
 - common-api-someip-runtime {3.2.4}
 		
-## Host machine {Ubuntu} 
+## # Host machine {Ubuntu} 
 
 ### delete old boost & change version of boost on pc
 	  
@@ -66,7 +66,7 @@
 ![image](1.png)
 
 
-## RPI
+## # Target machine {Rpi 4}
 
 ![image](3.png)
 		  
