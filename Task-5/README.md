@@ -71,6 +71,9 @@
 	$ scp $QNX_TARGET/$CPUVARDIR/usr/local/lib/libvsomeip3* root@$TARGET_HOST:/data/home/root/lib
 	$ scp -r $QNX_TARGET/$CPUVARDIR/usr/local/bin/vsomeip_tests root@$TARGET_HOST:/data/home/root/bin
 
+![image](4.png)
+
+
 	  
 ## # Build vsomeip client/service app 
 
