@@ -3,7 +3,7 @@
 ## Libraries versions used
 
 **1. Host machine {Ubuntu}**
-- Vsomeip version 		      #0969DA {3.5.11}
+- Vsomeip version 		      {3.5.11}
 - boost version   		      {1.78.0}
 - qnx SDP version 		      {8.0}
 - common-api-core-runtime 	{3.2.4}
@@ -65,8 +65,37 @@
 
 ![image](1.png)
 
-	
-	  
-	  
+
+## RPI
+
+![image](3.png)
+		  
+### build CommonApi-core-runtime on rpi
+
+**1. Download repo**
+
+	$ devtool add capicxx-core-runtime https://github.com/COVESA/capicxx-core-runtime.git --srcbranch=master
+	$ devtool finish capicxx-core-runtime ../meta-ota/recipes-commonapi/capicxx-core-runtime
+
+**2, Edit recipe**
+- edit recipe file as this  [file](./capicxx-core-runtime_git.bb)
+
+**3. Build Image 
+- add recipe name to {IMAGE_INSTALL} in distro.conf
+
+	  	
+### build CommonApi-someip-runtime on rpi
+
+**1. Download repo**
+
+	  - $ devtool add capicxx-someip-runtime https://github.com/COVESA/capicxx-someip-runtime.git --srcbranch=master
+	  - $ devtool finish capicxx-someip-runtime ../meta-ota/recipes-commonapi/capicxx-someip-runtime
+
+**2, Edit recipe**
+- edit recipe file as this  [file](./capicxx-someip-runtime_git.bb)
+
+**3. Build Image 
+- add recipe name to {IMAGE_INSTALL} in distro.conf
 	  
 			
+![image](2.png)
